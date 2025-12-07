@@ -1,0 +1,149 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    overflow-x: hidden;
+    animation: backgroundShift 20s infinite alternate;
+}
+
+@keyframes backgroundShift {
+    0% {background-position: 0% 50%;}
+    100% {background-position: 100% 50%;}
+}
+
+/* Header styles */
+header {
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 20px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    animation: glow 3s ease-in-out infinite;
+}
+
+@keyframes glow {
+    0%, 100% {box-shadow: 0 0 20px #fff;}
+    50% {box-shadow: 0 0 40px #ff66cc;}
+}
+
+h1 {
+    font-size: 2.5em;
+    color: #ffe600;
+    text-shadow: 2px 2px 8px #000;
+}
+
+header p {
+    font-size: 1.2em;
+    margin-top: 10px;
+}
+
+/* Controls and interaction area */
+.interactive-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    width: 90%;
+    max-width: 600px;
+    padding: 20px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    backdrop-filter: blur(10px);
+}
+
+.controls {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+input[type="number"] {
+    padding: 12px 20px;
+    font-size: 1em;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    width: 150px;
+    transition: all 0.3s ease;
+}
+
+input[type="number"]:focus {
+    box-shadow: 0 0 10px #ffe600;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #ff7e5f, #feb47b);
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+}
+
+/* Accumulator display */
+.accumulator-area {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#currentSum {
+    font-size: 2em;
+    color: #ffd700;
+    text-shadow: 1px 1px 4px #000;
+}
+
+/* Canvas for musical visuals */
+.music-visuals {
+    width: 100%;
+    height: 200px;
+    margin-top: 20px;
+}
+
+#musicCanvas {
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    background: rgba(255,255,255,0.1);
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.4);
+}
+
+/* Footer styles */
+footer {
+    margin-top: 40px;
+    font-size: 1em;
+    text-align: center;
+    color: #ccc;
+}
+
+/* Responsive adjustments */
+@media(max-width: 600px){
+    header h1 {
+        font-size: 2em;
+    }
+    button {
+        font-size: 1em;
+        padding: 10px 20px;
+    }
+}
