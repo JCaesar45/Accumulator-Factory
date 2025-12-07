@@ -1,0 +1,7 @@
+function accumulator(n) {
+    let total = n;
+    return function innerAccumulator(m) {
+        total += m;
+        return total;
+    };
+}
