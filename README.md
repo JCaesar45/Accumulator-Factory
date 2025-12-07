@@ -16,7 +16,7 @@ This project implements an **Accumulator Factory** in JavaScript, inspired by a 
 ### Creating an accumulator
 ```javascript
 const accumulator = createAccumulator(0); // start with 0
-```
+``
 
 ### Using the accumulator
 ```javascript
