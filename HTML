@@ -1,0 +1,32 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🎶 Musical Accumulator 🎵</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <header>
+        <h1>🎶 The Musical Accumulator 🎵</h1>
+        <p>Compose your own symphony of numbers with our creative accumulator!</p>
+    </header>
+    <section class="interactive-section">
+        <div class="controls">
+            <input type="number" id="initialValue" placeholder="Initial Value" />
+            <button id="createBtn">🎼 Create Accumulator</button>
+        </div>
+        <div class="accumulator-area">
+            <h2>Current Sum: <span id="currentSum">0</span></h2>
+            <input type="number" id="newNumber" placeholder="Add a number" disabled />
+            <button id="addBtn" disabled>🎹 Add</button>
+        </div>
+        <div class="music-visuals">
+            <canvas id="musicCanvas"></canvas>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2024 🎸 Jordan Leturgez. Let the music of numbers play! 🎧</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
