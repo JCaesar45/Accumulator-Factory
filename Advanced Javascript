@@ -1,0 +1,97 @@
+// Create the accumulator factory
+function createAccumulator(n) {
+    let total = n;
+    return function (num) {
+        total += num;
+        return total;
+    };
+}
+
+// DOM Elements
+const initialInput = document.getElementById('initialValue');
+const createBtn = document.getElementById('createBtn');
+const addBtn = document.getElementById('addBtn');
+const newNumberInput = document.getElementById('newNumber');
+const currentSumSpan = document.getElementById('currentSum');
+const musicCanvas = document.getElementById('musicCanvas');
+
+let accumulator = null;
+
+// Canvas setup
+const ctx = musicCanvas.getContext('2d');
+let animationId = null;
+
+// Resize canvas to fit container
+function resizeCanvas() {
+    musicCanvas.width = musicCanvas.clientWidth;
+    musicCanvas.height = musicCanvas.clientHeight;
+}
+window.addEventListener('resize', resizeCanvas);
+
+// Initialize canvas size
+resizeCanvas();
+
+// Musical visualization variables
+let particles = [];
+
+function createParticle() {
+    const size = Math.random() * 5 + 2;
+    const x = Math.random() * musicCanvas.width;
+    const y = musicCanvas.height + size;
+    const speed = Math.random() * 2 + 1;
+    const color = `hsl(${Math.random() * 360}, 70%, 60%)`;
+    return { x, y, size, speed, color };
+}
+
+function draw() {
+    ctx.clearRect(0, 0, musicCanvas.width, musicCanvas.height);
+    // Add new particles based on current sum
+    if (accumulator) {
+        const count = Math.min(Math.abs(accumulator()), 10);
+        for(let i=0; i< count; i++) {
+            particles.push(createParticle());
+        }
+    }
+    // Animate particles
+    particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+        p.y -= p.speed;
+    });
+    // Remove particles that have moved off-screen
+    particles = particles.filter(p => p.y + p.size > 0);
+    animationId = requestAnimationFrame(draw);
+}
+
+// Start animation loop
+draw();
+
+// Event Listeners
+createBtn.addEventListener('click', () => {
+    const initialVal = parseFloat(initialInput.value);
+    if (isNaN(initialVal)) {
+        alert('Please enter a valid initial value!');
+        return;
+    }
+    accumulator = createAccumulator(initialVal);
+    currentSumSpan.textContent = initialVal;
+    newNumberInput.disabled = false;
+    addBtn.disabled = false;
+    initialInput.disabled = true;
+    createBtn.disabled = true;
+});
+
+addBtn.addEventListener('click', () => {
+    const val = parseFloat(newNumberInput.value);
+    if (isNaN(val)) {
+        alert('Please enter a valid number to add!');
+        return;
+    }
+    const newSum = accumulator(val);
+    currentSumSpan.textContent = newSum;
+    newNumberInput.value = '';
+});
+
+// Optional: Add sound effects or musical notes when adding numbers (advanced enhancement)
